@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="es" xmlns="http://www.thymeleaf.org"></html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${title}">Document</title>
+</head>
+<body>
+    <h1 th:text="${title}">Hola Mundo Spring Boot</h1>
+    <ul>
+        <li th:text="${user.name}"></li>
+        <li th:text="${user.lastname}"></li>
+    </ul>
+
+</body>
+</html>
