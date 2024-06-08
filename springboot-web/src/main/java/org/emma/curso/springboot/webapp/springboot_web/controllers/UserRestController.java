@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.emma.curso.springboot.webapp.springboot_web.models.User;
+import org.emma.curso.springboot.webapp.springboot_web.models.dto.UserDto;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -14,14 +15,23 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api")
 public class UserRestController {
 
-    @GetMapping("/details")
-    // La anotacion @GetMapping es una anotación compuesta que actúa como un atajo para
+    // La anotacion @GetMapping es una anotación compuesta que actúa como un atajo
+    // para
     // @RequestMapping(method = RequestMethod.GET).
     // En este caso: @RequestMapping(value = "/details", method = RequestMethod.GET)
-    
-    public Map<String, Object> details() {
-        Map<String, Object> body = new HashMap<>();
+    @GetMapping("/details")
+    public UserDto details() {
+        UserDto userDto = new UserDto();
         User user = new User("Emmanuel", "Faúndez");
+        userDto.setUser(user);
+        userDto.setTitle("Hola Mundo Spring Boot");
+        return userDto;
+    }
+
+    @GetMapping("/details-map")
+    public Map<String, Object> detailsMap() {
+        User user = new User("Emmanuel", "Faúndez");
+        Map<String, Object> body = new HashMap<>();
         body.put("title", "Hola Mundo Spring Boot");
         body.put("user", user);
         return body;
