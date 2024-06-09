@@ -1,5 +1,12 @@
 package org.emma.curso.springboot.webapp.springboot_web.models;
 
+/**
+ * <p>Esta clase representa la entidad User (Usuario)
+ *  en la base de datos. Es una clase simple
+ *  la cual tiene los atributos name, lastname y email.
+ *  (formato POJO: Plain Old Java Object)</p>
+ */
+
 public class User {
     private String name;
     private String lastname;
@@ -11,6 +18,11 @@ public class User {
     public User(String name, String lastname) {
         this.name = name;
         this.lastname = lastname;
+    }
+
+    public User(String name, String lastname, String email) {
+        this(name, lastname);
+        this.email = email;
     }
 
     public String getName() {

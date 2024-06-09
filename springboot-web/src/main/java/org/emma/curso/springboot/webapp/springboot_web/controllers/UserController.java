@@ -1,6 +1,5 @@
 package org.emma.curso.springboot.webapp.springboot_web.controllers;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.emma.curso.springboot.webapp.springboot_web.models.User;
@@ -8,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 
 /*
  * @Controller es una anotación en Spring Framework que indica que una clase 
@@ -42,9 +42,17 @@ public class UserController {
 
     @GetMapping("/list")
     public String list(ModelMap model) {
-        List<User> users = new ArrayList<>();
-        model.addAttribute("users", users);
+        // model.addAttribute("users", users);
         model.addAttribute("title", "Listado de los usuarios");
         return "list";
+    }
+
+    //Esta anotación es como si pasaramos el model en el constructor
+    //y luego hicieramos un model.addAttribute
+    @ModelAttribute("users")
+    public List<User> usersModel() {
+        return List.of(
+                new User("Emmanuel", "Faúndez", "faundez76@gmail.com"),
+                new User("Juan", "P"));
     }
 }
