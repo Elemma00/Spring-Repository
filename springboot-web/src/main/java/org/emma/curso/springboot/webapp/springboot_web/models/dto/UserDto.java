@@ -6,6 +6,7 @@ public class UserDto {
 
     private String title;
     private User user;
+    
 
     public String getTitle() {
         return title;

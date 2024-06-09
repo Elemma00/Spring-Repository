@@ -1,6 +1,7 @@
 package org.emma.curso.springboot.webapp.springboot_web.controllers;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.emma.curso.springboot.webapp.springboot_web.models.User;
@@ -26,6 +27,15 @@ public class UserRestController {
         userDto.setUser(user);
         userDto.setTitle("Hola Mundo Spring Boot");
         return userDto;
+    }
+
+    @GetMapping("/list")
+    public List<User> list(){
+        User emma = new User("Emmanuel", "Faúndez");
+        User andres = new User("Andrés", "Guzmán");
+        User carolina = new User("Carolina", "Vera");
+        List<User> users = List.of(emma, andres, carolina);
+        return users;
     }
 
     @GetMapping("/details-map")
