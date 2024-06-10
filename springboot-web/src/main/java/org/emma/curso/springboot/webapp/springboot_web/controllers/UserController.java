@@ -29,7 +29,6 @@ public class UserController {
     @GetMapping("/details")
     // Model es una interfaz en Spring que contiene los datos que se van a mostrar
     // en la vista.
-
     public String details(Model model) {
         User user = new User("Emmanuel", "Faúndez");
         user.setEmail("faundez76@gmail.com");
