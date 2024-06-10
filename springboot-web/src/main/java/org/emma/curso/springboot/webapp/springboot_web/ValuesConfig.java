@@ -5,7 +5,7 @@ import org.springframework.context.annotation.PropertySource;
 
 @Configuration
 @PropertySource(value = "classpath:values.properties", encoding = "UTF-8")
-// Si tenemos m·s de un path, se pueden agregar con comas
+// Si tenemos m√°s de un path, se pueden agregar con comas
 // @PropertySource({"classpath:values.properties",
 // "classpath:values2.properties"}
 public class ValuesConfig {

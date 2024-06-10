@@ -6,7 +6,9 @@ import java.util.Map;
 
 import org.emma.curso.springboot.webapp.springboot_web.models.User;
 import org.emma.curso.springboot.webapp.springboot_web.models.dto.ParamDto;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.env.Environment;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -45,6 +47,10 @@ public class PathVariableController {
     @Value("#{${config.valuesMap}.key1}")
     private String key1;
 
+    //podemos utilizar el environment para obtener valores
+    //de las variables de entorno
+    @Autowired
+    private Environment environment;
 
     //utilizamos el path variable para recibir un parametro 
     //en la url, en este caso la variable message
@@ -86,6 +92,8 @@ public class PathVariableController {
         json.put("valueList", valueList);
         json.put("valuesMap", valuesMap);
         json.put("key1", key1);
+        json.put("message2", environment.getProperty("config.message"));
+        json.put("code2", environment.getProperty("config.code"));
         return json;
     }
     
