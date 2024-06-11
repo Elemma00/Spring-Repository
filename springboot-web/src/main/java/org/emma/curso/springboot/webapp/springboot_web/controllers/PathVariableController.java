@@ -57,6 +57,7 @@ public class PathVariableController {
     @GetMapping("/baz/{message}")
     public ParamDto baz(@PathVariable String message){
         ParamDto param = new ParamDto();
+        param.setMessage(message);
         return param;
     }
 
