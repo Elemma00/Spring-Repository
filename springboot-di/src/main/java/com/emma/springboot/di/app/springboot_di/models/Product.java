@@ -1,13 +1,12 @@
 package com.emma.springboot.di.app.springboot_di.models;
 
-public class Product {
+public class Product implements Cloneable {
 
     private Long id;
     private String name;
     private Long price;
 
-    public Product() {
-    }
+    public Product(){}
 
     public Product(Long id, String name, Long price) {
         this.id = id;
@@ -38,5 +37,16 @@ public class Product {
     public void setPrice(Long price) {
         this.price = price;
     }
+
+    @Override
+    public Object clone(){
+        try {
+            return super.clone();
+        } catch (CloneNotSupportedException e) {
+            return new Product(id,name,price);
+        }
+    }
+
+    
 
 }
