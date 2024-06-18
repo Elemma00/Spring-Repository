@@ -40,7 +40,8 @@ public class HandlerExceptionController {
         return error;
     }
 
-    @ExceptionHandler({ NullPointerException.class, HttpMessageNotWritableException.class, UserNotFoundException.class})
+    @ExceptionHandler({ NullPointerException.class, HttpMessageNotWritableException.class,
+            UserNotFoundException.class })
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public Map<String, String> userNotFoundException(Exception e) {
         Map<String, String> error = new HashMap<>();
