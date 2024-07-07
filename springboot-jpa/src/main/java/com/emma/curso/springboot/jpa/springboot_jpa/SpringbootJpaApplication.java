@@ -10,6 +10,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.emma.curso.springboot.jpa.springboot_jpa.dto.PersonDto;
 import com.emma.curso.springboot.jpa.springboot_jpa.entities.Person;
 import com.emma.curso.springboot.jpa.springboot_jpa.repositories.PersonRepository;
 
@@ -26,7 +27,23 @@ public class SpringbootJpaApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		personalizedQueries2();
+		personalizedQueriesDistinct();
+	}
+
+    @Transactional(readOnly = true)	
+	public void personalizedQueriesDistinct(){
+
+		System.out.println("Consulta con nombres unicos");
+		List<String> names = repository.findAllByNameDistinct();
+		names.forEach(System.out::println);
+
+		System.out.println("Consulta con lenguajes de programación unicos");
+		List<String> programmingLanguages = repository.findAllByProgrammingLanguageDistinct();
+		programmingLanguages.forEach(System.out::println);
+
+		System.out.println("Consulta con la cantidad de lenguajes de programación unicos");
+		Long count = repository.countDistinctProgrammingLanguages();
+		System.out.println(count);
 	}
 
 	@Transactional(readOnly = true)
@@ -34,6 +51,10 @@ public class SpringbootJpaApplication implements CommandLineRunner {
 		System.out.println("consulta que puebla y devuelve un objeto entity de una instancia personalizada");
 		List<Person> persons = repository.findAllObjectPersonPersonalized();
 		persons.forEach(System.out::println);
+
+		System.out.println("consulta que puebla y devuelve un objeto dto de una instancia personalizada");
+		List<PersonDto> personsDto = repository.findAllPersonDto();
+		personsDto.forEach(System.out::println);
 	}
 
 	@Transactional(readOnly = true)
