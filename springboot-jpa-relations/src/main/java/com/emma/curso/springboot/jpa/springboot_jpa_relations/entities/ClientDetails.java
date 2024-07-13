@@ -4,25 +4,29 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "addresses")
-public class Address {
+@Table(name = "client_details")
+public class ClientDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String street;
-    private Integer number;
+    private boolean premium;
+    private Integer points;
 
-    public Address() {
+    @OneToOne
+    private Client client;
+
+    public ClientDetails() {
     }
 
-    public Address(String street, Integer number) {
-        this.street = street;
-        this.number = number;
+    public ClientDetails(boolean premium, Integer points) {
+        this.premium = premium;
+        this.points = points;
     }
 
     public Long getId() {
@@ -33,23 +37,29 @@ public class Address {
         this.id = id;
     }
 
-    public String getStreet() {
-        return street;
+    public boolean isPremium() {
+        return premium;
     }
 
-    public void setStreet(String street) {
-        this.street = street;
+    public void setPremium(boolean premium) {
+        this.premium = premium;
     }
 
-    public Integer getNumber() {
-        return number;
+    public Integer getPoints() {
+        return points;
     }
 
-    public void setNumber(Integer number) {
-        this.number = number;
+    public void setPoints(Integer points) {
+        this.points = points;
     }
 
-    
+    public Client getClient() {
+        return client;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
+    }
 
     @Override
     public int hashCode() {
@@ -67,7 +77,7 @@ public class Address {
             return false;
         if (getClass() != obj.getClass())
             return false;
-        Address other = (Address) obj;
+        ClientDetails other = (ClientDetails) obj;
         if (id == null) {
             if (other.id != null)
                 return false;
@@ -78,7 +88,9 @@ public class Address {
 
     @Override
     public String toString() {
-        return "{id=" + id + ", street=" + street + ", number=" + number + "}";
+        return "{id=" + id + ", premium=" + premium + ", points=" + points + "}";
     }
 
+    
+    
 }
