@@ -1,5 +1,6 @@
 package com.emma.curso.springboot.jpa.springboot_jpa_relations;
 
+import java.util.Arrays;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,12 +30,12 @@ public class SpringbootJpaRelationsApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		oneToMany();
+		oneToManyFindById();
 	}
 
 	@Transactional
-	public void manyToOne(){
-		
+	public void manyToOne() {
+
 		Client client = new Client("Emma", "Faúndez");
 		clientRepository.save(client);
 
@@ -45,10 +46,10 @@ public class SpringbootJpaRelationsApplication implements CommandLineRunner {
 	}
 
 	@Transactional
-	public void manyToOneFindByIdClient(){
-		
+	public void manyToOneFindByIdClient() {
+
 		Optional<Client> optionalClient = clientRepository.findById(1L);
-		if(optionalClient.isPresent()){
+		if (optionalClient.isPresent()) {
 			Client client = optionalClient.orElseThrow();
 			Invoice invoice = new Invoice("Compras de oficina", 2000L);
 			invoice.setClient(client);
@@ -58,7 +59,7 @@ public class SpringbootJpaRelationsApplication implements CommandLineRunner {
 	}
 
 	@Transactional
-	public void oneToMany(){
+	public void oneToMany() {
 		Client client = new Client("Fran", "Moras");
 
 		Address address1 = new Address("Calle 1", 123);
@@ -69,5 +70,21 @@ public class SpringbootJpaRelationsApplication implements CommandLineRunner {
 
 		clientRepository.save(client);
 		System.out.println(client);
+	}
+
+	@Transactional
+	public void oneToManyFindById() {
+		Optional<Client> optionalClient = clientRepository.findById(2L);
+		optionalClient.ifPresent(client -> {
+
+			Address address1 = new Address("Calle 1", 123);
+			Address address2 = new Address("Calle 2", 456);
+
+			client.setAddresses(Arrays.asList(address1, address2));
+
+			clientRepository.save(client);
+			System.out.println(client);
+		});
+
 	}
 }
