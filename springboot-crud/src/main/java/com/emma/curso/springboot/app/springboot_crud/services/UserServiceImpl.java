@@ -50,4 +50,10 @@ public class UserServiceImpl implements UserService{
     }
 
 
+    @Override
+    @Transactional(readOnly = true)
+    public boolean existsByUsername(String username) {
+        return userRepository.existsByUsername(username);
+    }
+
 }
