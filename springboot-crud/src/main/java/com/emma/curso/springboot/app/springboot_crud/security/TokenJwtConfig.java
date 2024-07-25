@@ -4,6 +4,11 @@ import javax.crypto.SecretKey;
 
 import io.jsonwebtoken.Jwts;
 
+/**
+ * Clase que contiene la configuración de la llave secreta y el prefijo del token  
+ * para la generación y validación de los tokens JWT.
+ */
+ 
 public class TokenJwtConfig {
     
     public static final SecretKey SECRET_KEY = Jwts.SIG.HS256.key().build();

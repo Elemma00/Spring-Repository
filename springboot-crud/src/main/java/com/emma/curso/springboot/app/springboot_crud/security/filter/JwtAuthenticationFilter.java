@@ -29,6 +29,13 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
+
+/**
+ * Filtro de autenticación JWT.
+ * 
+ * <p>Este filtro se encarga de autenticar al usuario y generar un token JWT si las credenciales son correctas. 
+ *
+ */
 public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 
     private AuthenticationManager authenticationManager;
@@ -37,6 +44,14 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         this.authenticationManager = authenticationManager;
     }
 
+    
+    /** 
+     * Método que intenta autenticar al usuario.
+     * @param request
+     * @param response
+     * @return Authentication
+     * @throws AuthenticationException
+     */
     @Override
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response)
             throws AuthenticationException {
@@ -83,7 +98,7 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 
             response.getWriter().write(new ObjectMapper().writeValueAsString(body));
             response.setContentType(CONTENT_TYPE);
-            response.setStatus(200);
+            response.setStatus(HttpStatus.OK.value());
             
     }
 
